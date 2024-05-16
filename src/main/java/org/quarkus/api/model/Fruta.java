@@ -9,9 +9,7 @@ public class Fruta extends PanacheEntity {
     @SequenceGenerator(name = "frutaSeq", sequenceName = "fruta_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "frutaSeq")
     Long id;
-
     String nome;
-
     int qtd;
 
     public Long getId() {

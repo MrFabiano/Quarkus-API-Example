@@ -18,7 +18,6 @@ public class EntityNotFoundExceptionMapper implements ExceptionMapper<EntityNotF
     }
 
     public static class ErrorResponse{
-
         private String error;
         private String details;
 
