@@ -37,7 +37,7 @@ public class FrutasResource {
     public Response updatePorId(@PathParam("id")Long id, FrutaDTO frutaDTO){
         Fruta frutaExiste = frutaService.buscarPorId(id);
         if (frutaExiste == null){
-            throw new EntityNotFoundException("Fruta com ID " + id + "Não encontrada");
+            throw new EntityNotFoundException("Fruta com ID " + id + " = " + "Não encontrada");
         }
 
         frutaExiste.setNome(frutaDTO.getNome());
@@ -49,8 +49,13 @@ public class FrutasResource {
 
     @GET()
     @Path("/{id}")
-    public Fruta getFrutaId(@PathParam("id") Long id){
-        return frutaService.buscarPorId(id);
+    public Response getFrutaId(@PathParam("id") Long id){
+        Fruta fruta = frutaService.buscarPorId(id);
+        if(fruta == null){
+            throw new EntityNotFoundException("Fruta com ID " + id + " = " + " Não encontrada");
+        }
+        frutaService.buscarPorId(id);
+        return Response.ok(fruta).build();
     }
 
     @DELETE
@@ -59,7 +64,7 @@ public class FrutasResource {
     public Response deleteById(@PathParam("id") Long id){
         Fruta fruta = frutaService.buscarPorId(id);
         if(fruta == null){
-            throw new EntityNotFoundException("Fruta com ID" + id + "Não encontrada");
+            throw new EntityNotFoundException("Fruta com ID " + id + " = " + " Não encontrada");
         }
 
         frutaService.deletar(fruta);

@@ -47,6 +47,6 @@ public final class FrutaService {
 
     @Transactional
     public void deletar(Fruta fruta){
-      entityManager.remove(fruta);
+      entityManager.remove(entityManager.contains(fruta) ? fruta : entityManager.merge(fruta));
     }
 }
